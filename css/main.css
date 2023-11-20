@@ -1,0 +1,981 @@
+html.fixed {
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+body {
+height: 2000px;
+font-family: "Nanum Gothic", sans-serif;
+font-family: "Noto Sans Display", sans-serif;
+font-family: "Noto Sans KR", sans-serif;
+
+/* 기본 폰트 15px, 높이 1배수, 한글 단어 연결 줄바꿈 */
+word-break: keep-all;
+font-size: 16px;
+line-height: 1;
+color: black;
+position: relative;
+
+}
+
+p {
+    line-height: 1.8;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+img {
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/* 공통 이너 속성 */
+.inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* 공통 버튼 스타일 설정 */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 100px;
+    outline: none;
+    font-size: 11px;
+    line-height: 1;
+    color: #f3f3f3;
+    background-color: royalblue;
+    cursor: pointer;
+}
+.btn:hover {
+    opacity: 0.6;
+}
+.btn:focus {
+    box-shadow: 0 0 0 4px #81b9f1;
+}
+
+
+/* 공통 피규어 속성 */
+
+.figures {}
+
+
+
+/* 헤더 스타일 */
+
+header {
+    background-color: #3a3a3a;
+    position: relative;
+    z-index: 9;
+}
+
+header .inner {
+    max-width: 1020px;
+    margin: auto;
+
+}
+
+header ul.menu {
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header ul.menu > li {
+    display: flex;
+    position: relative;
+    transition: 0.7s;
+}
+
+header ul.menu > li > a {
+    padding: 0 10px;
+    font-size:  11px;
+    display: flex;
+    align-items: center;
+    color: #f5f5f5;
+    opacity: 0.65;
+    text-decoration: none;
+}
+
+
+header ul.menu >li > a:hover {
+    opacity: 1;
+}
+
+     /* 헤더의 3개 메뉴 아이콘으로 변경 */
+header ul.menu > li.apple-logo > a, 
+header ul.menu > li.search-starter > a, 
+header ul.menu > li.basket-starter > a {
+    width: 14px;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: center 13px;
+}
+header ul.menu > li.apple-logo > a {
+    background-image: url("../images/header_apple.svg");
+}
+header ul.menu > li.search-starter > a {
+    background-image: url("../images/header_search.svg");
+}
+header ul.menu > li.basket-starter > a {
+    background-image: url("../images/header_bag.svg");
+}
+
+
+
+
+/* 헤더 메뉴 바스켓의 드룹다운 부분 */
+header .basket{
+    width: 290px;
+    padding: 10px 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: -6px;
+    visibility: hidden;
+    transition: 0.5s;
+    opacity: 0;
+}
+header .basket.show{
+    visibility: visible;
+    opacity: 1; 
+    /* 자바스크립트 연동 부분 */
+}
+
+
+header .basket .arrow{
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    overflow: hidden;
+}
+
+header .basket .arrow::before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    border: 1px solid #d2d2d2;
+    background-color: #f5f5f5;
+    transform: rotate(45deg);
+    transform-origin: 0 0 ;
+    position: absolute;
+    top: 0;
+    left: 50%;    
+}
+
+header .basket .message {
+    padding: 30px 0;
+    font-size: 13px;
+    color: #6e6e6e;
+    text-align: center;
+}
+
+header .basket ul {
+    margin-top: 10px;
+}
+
+header .basket ul li {
+    border-top: 1px solid #d2d2d2;
+}
+
+header .basket ul li a {
+    display: block;
+    padding: 18px;
+    font-size: 15px;
+    color: #0071e5;
+}
+
+header .basket ul li a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+/* 헤더의 검색창 작업 */
+
+header .search-wrap {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+header .search {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+}
+
+header .search .shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+}
+
+header .search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 18px;
+    color: #f5f5f5;
+}
+
+header .search .textfield {
+    position: relative;
+}
+
+header .search .search-icon {
+    width: 40px;
+    height: 40px;
+    background-image: url("../images/header_search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+header .search .search-closer {
+    width: 40px;
+    height: 40px;
+    background-image: url("../images/header_close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    cursor: pointer;
+}
+header .search .search-closer:hover {
+    opacity: 1;
+}
+
+header .search .autocompletes {
+    width: 100%;
+    padding: 26px 40px 20px;
+    border-radius: 0 0 18px 18px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    position: absolute;
+}
+
+header .search .autocompletes h3 {
+    font-size: 12px;
+    color: #6e6e6e;
+    margin-bottom: 12px;
+}
+
+header .search .autocompletes ul {
+}
+
+header .search .autocompletes ul li:hover a {
+    background-color: #f3f3f3;
+    color: blue;
+}
+
+header .search .autocompletes ul li a {
+    display: block;
+    margin: 0 -14px;
+    padding: 10px 0 10px 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+header .search input,
+header .search .search-icon,
+header .search .autocompletes h3,
+header .search .autocompletes li {
+    transition: 0.5s;
+    transform: translate(100px,0);
+}
+
+
+header.searching ul.menu > li {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+header.searching .search-wrap {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.3;
+}
+
+header.searching .search input,
+header.searching .search .search-icon,
+header.searching .search .autocompletes h3,
+header.searching .search .autocompletes li {
+    transition: 0.2s;
+    transform: translate(0,0);
+}
+
+
+
+/* 네이게이션 부분 */
+
+nav {
+    background-color: rgba(255,252,255, 0.6);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #d2d2d2;
+    position: sticky;
+    top: 1px;
+    z-index: 99;
+}
+
+nav .inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 18px;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+nav .menu {
+    display: flex;
+    gap: 12px;
+    margin-right: 18px;
+}
+
+nav .menu li {
+
+}
+
+nav .menu li a{
+    display: block;
+    font-size: 11px;
+    padding: 6px;
+}
+
+nav .menu li:hover a{
+    color: blue
+}
+
+nav .menu li.active a{
+    opacity: 0.5;
+    cursor: default;
+}
+nav .menu li.active a{
+    opacity: 0.5;
+    cursor: default;
+    color: #1d1d1d;
+}
+
+
+main {
+    overflow-x: hidden;
+}
+
+
+/* 메인화면 : 히어로 */
+
+.hero {
+    background-color: #f5f5f5;
+}
+
+.hero .inner {
+    padding-bottom: 110px;
+}
+
+.hero h1 {
+    background-image: url(../images/hero_ipad_text.png);
+    width: 221px;
+    height: 91px;
+    background-repeat: no-repeat;
+    background-position: center; /* 텍스트 부분 공통적일수 있음*/
+    background-size: contain; /* 텍스트 부분 공통적일수 있음*/
+    text-indent: -9999px;   /* 텍스트 부분 공통적일수 있음*/
+    position: absolute;
+    transform: translate(624px, 235px);
+    z-index: 1;
+}
+
+.hero .figures{
+    height: 808px;
+}
+
+.hero figure {
+    transform: translate(74px,-34px);
+}
+
+.hero figure figcaption .caption-camera {
+    background-image: url("../images/hero_ipad_caption_camera.png");
+    transform: translate(-30px, -220px);
+    width: 120px;
+    height: 84px;
+    background-repeat: no-repeat;
+}
+
+.hero figure figcaption .caption-chip {
+    transform: translate(733px, -200px);
+    background-image: url("../images/hero_ipad_caption_chip.png");
+    width: 129px;
+    height: 84px;
+    background-repeat: no-repeat;
+}
+
+.hero figure figcaption .caption-storage {
+    transform: translate(627px, -370px);
+    background-image: url("../images/hero_ipad_caption_storage.png");
+    width: 100px;
+    height: 85px;
+    background-repeat: no-repeat;
+}
+
+.hero h2 {
+    background-image: url(../images/hero_headline.png);
+    width: 738px;
+    height: 145px;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+
+.hero p.pricing {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 650;
+    text-align: center;
+}
+
+.hero p.description {
+    width: 70%;
+    margin: 18px auto 20px;
+    text-align: center;
+}
+
+.hero .links {
+    display: flex;
+    justify-content: center;
+    text-align: center;    
+    gap: 80px;
+}
+
+.hero .links a:hover {
+    color: #81b9f1;    
+    text-decoration: underline;
+}
+
+
+/* 파워 세셕 */
+
+.power{
+    margin-top: 50px;
+}
+
+.power .inner{}
+
+.power .multiple-apps h1{
+    background-image: url("../images/power_headline.png");
+    width: 500px;
+    height: 280px;
+    transform: translate(105px, 0);
+}
+
+.power .multiple-apps .figures{
+    height: 773px;
+}
+
+.power .multiple-apps figcaption{
+    width: 138px;
+    height: 46px;
+    transform: translate(700px,-825px);
+    background-image: url("../images/power_multiple_apps_caption.png");
+}
+
+
+/* 파워의 아케이드부분 */
+
+.power .arcade{
+    margin-top: 30px;
+}
+
+.power .arcade .figures{
+    height: 600px;
+}
+
+.power .arcade figure{
+    transform: translate(-290px, 0px);
+}
+
+.power .arcade figcaption{
+    background-image: url("../images/power_arcade_caption.png");
+    width: 150px;
+    height: 77px;
+    transform: translate(450px, -120px);
+}
+
+.power .arcade .infos {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.power .arcade .infos .info {
+    /* max-width: 300px; */
+    /* margin-bottom: 30px; */
+    transform: translate(750px,-400px);
+    margin-bottom: 50px;
+}
+
+
+.power .arcade .infos .info .icon {
+    /* background-image: url("../images/sprite_apps.png"); */
+    width: 100px;
+    height: 100px;
+    margin: 0 100px -10px -30px;
+
+}
+
+.power .arcade .infos .info p {
+    font-size: 22px;
+    font-weight: 700;
+    max-width: 250px;
+}
+
+/* 파워 크리에잇 */
+
+.power .create{
+    margin-top: -170px;
+}
+
+.power .create .figures{
+    height: 777px;
+}
+
+.power .create figure{
+    transform: translate(255px, 50px);
+}
+
+.power .create figcaption{
+    background-image: url("../images/power_create_caption.png");
+    width: 140px;
+    height: 50px;
+    transform: translate(590px,-160px);
+    background-repeat: no-repeat;
+}
+
+.power .create .infos {
+    transform: translate(-20px, -450px);
+
+}
+
+.power .create .infos .info {
+    padding: 0px 50px 0px 0px;
+    margin-bottom: 40px;
+    width: 270px;
+
+}
+
+.power .create .infos .info p {
+    font-size: 22px;
+    font-weight: 700;
+
+}
+
+
+/* 아이콘 애니메이션 : 하나의 그림파일에서 위치 조정해서 애니매이션 처럼 보이기 */
+.icon1 {
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/sprite_battery.png");
+    animation-name: kukm123;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+.icon2 {
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/sprite_apps.png");
+    animation-name: kukm123;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+.icon3 {
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/sprite_chip.png");
+    animation-name: kukm123;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+.icon4 {
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/sprite_display.png");
+    animation-name: kukm123;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+.icon5 {
+    width: 100px;
+    height: 100px;
+    background-image: url("../images/sprite_front_camera.png");
+    animation-name: kukm123;
+    animation-duration: 2.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes kukm123 {
+    0.00% { background-position: 0 0; }
+    1.67% { background-position: -100px 0; }
+    3.33% { background-position: -200px 0; }
+    5.00% { background-position: -300px 0; }
+    6.67% { background-position: -400px 0; }
+    8.33% { background-position: -500px 0; }
+    10.00% { background-position: 0 -100px; }
+    11.67% { background-position: -100px -100px; }
+    13.33% { background-position: -200px -100px; }
+    15.00% { background-position: -300px -100px; }
+  
+    /* 11~20 */
+    16.67% { background-position: -400px -100px; }
+    18.33% { background-position: -500px -100px; }
+    20.00% { background-position: 0 -200px; }
+    21.67% { background-position: -100px -200px; }
+    23.33% { background-position: -200px -200px; }
+    25.00% { background-position: -300px -200px; }
+    26.67% { background-position: -400px -200px; }
+    28.33% { background-position: -500px -200px; }
+    30.00% { background-position: 0 -300px; }
+    31.67% { background-position: -100px -300px; }
+  
+    /* 21~30 */
+    33.33% { background-position: -200px -300px; }
+    35.00% { background-position: -300px -300px; }
+    36.67% { background-position: -400px -300px; }
+    38.33% { background-position: -500px -300px; }
+    40.00% { background-position: 0 -400px; }
+    41.67% { background-position: -100px -400px; }
+    43.33% { background-position: -200px -400px; }
+    45.00% { background-position: -300px -400px; }
+    46.67% { background-position: -400px -400px; }
+    48.33% { background-position: -500px -400px; }
+  
+    /* 31~40 */
+    50.00% { background-position: 0 -500px; }
+    51.67% { background-position: -100px -500px; }
+    53.33% { background-position: -200px -500px; }
+    55.00% { background-position: -300px -500px; }
+    56.67% { background-position: -400px -500px; }
+    58.33% { background-position: -500px -500px; }
+    60.00% { background-position: 0 -600px; }
+    61.67% { background-position: -100px -600px; }
+    63.33% { background-position: -200px -600px; }
+    65.00% { background-position: -300px -600px; }
+  
+    /* 41~50 */
+    66.67% { background-position: -400px -600px; }
+    68.33% { background-position: -500px -600px; }
+    70.00% { background-position: 0 -700px; }
+    71.67% { background-position: -100px -700px; }
+    73.33% { background-position: -200px -700px; }
+    75.00% { background-position: -300px -700px; }
+    76.67% { background-position: -400px -700px; }
+    78.33% { background-position: -500px -700px; }
+    80.00% { background-position: 0 -800px; }
+    81.67% { background-position: -100px -800px; }
+  
+    /* 51~60 */
+    83.33% { background-position: -200px -800px; }
+    85.00% { background-position: -300px -800px; }
+    86.67% { background-position: -400px -800px; }
+    88.33% { background-position: -500px -800px; }
+    90.00% { background-position: 0 -900px; }
+    91.67% { background-position: -100px -900px; }
+    93.33% { background-position: -200px -900px; }
+    95.00% { background-position: -300px -900px; }
+    96.67% { background-position: -400px -900px; }
+    98.33% { background-position: -500px -900px; }
+  }
+
+
+
+  /* 비디오 섹션 */
+.camera {
+    margin-top: -400px;
+    transform: translate(20px, 30px);
+}
+.camera .stage > h1 {
+    background-image: url("../images/camera_hardware_caption.png");
+    background-repeat: no-repeat;
+    width: 130px;
+    height: 120px;
+    transform: translate(-80px, 1200px);
+}
+
+.camera .stage .info {
+    background-image: url("../images/camera_headline.png");
+    width: 650px;
+    height: 450px;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+.camera .stage .info .icon5 {
+    /* margin: auto; */
+    transform: translate(-170px, 400px);
+}
+
+.camera .stage .figures {
+    position: relative;
+}
+
+.camera .stage .figures figure {}
+
+.camera .stage .figures figure figcaption {
+    background-image: url("../images/camera_edit_caption.png");
+    width: 130px;
+    height: 50px;
+    margin: auto;
+    transform: translate(180px, -120px);
+}
+
+.camera .stage .figures video{
+    position: absolute;
+    transform: translate(76px, -735px);
+    mask-image: url("../images/camera_video_mask.png");
+    -webkit-mask-image: url("../images/camera_video_mask.png");
+}
+
+
+/* 컴페어 */
+
+.compare {
+    background-color: rgb(232, 228, 228);
+    border-top: solid 1px black;
+
+    padding: 10px 10px 0;
+    text-align: center;
+    height: 700px;
+}
+
+.compare h1{
+    margin-top: 35px;
+    font-size: 35px;
+    font-weight: 1000;
+    color: black;
+}
+
+.compare .items {
+    display: flex;
+    justify-content: space-around;
+    max-width: 940px;
+    margin: 68px auto 74px;    
+}
+
+.compare .item {
+    width: 190px;
+    padding-bottom: 34px;
+    border-bottom: 1px solid #6e6e6e;
+}
+
+.compare .item .thumbnail {
+    height: 214px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.compare .item ul.colors {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.compare .item ul.colors li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: lightcyan;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0, 0.2);
+}
+
+.compare .item h3.name {
+    margin-bottom: 4px;
+    font-size: 22px;
+}
+
+.compare .item .tagline {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.compare .item .price {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.compare .item .btn {
+    margin: 0 auto 14px;
+}
+
+.compare .links a.link {
+    font-size: 24px;
+    color: #0071e5;
+    padding-left: 110px;
+    padding-right: 150px;
+}
+
+.compare .links a.link:hover {
+    color: #1d1d1d;
+    opacity: 0.7;
+}
+
+/* 푸터 */
+
+footer .breadcrumbs {
+    max-width: 950px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+    padding: 10px;
+}
+
+footer .breadcrumbs a {
+    font-size: 12px;
+    color: darkgray;
+}
+
+footer .breadcrumbs a.apple-logo{
+    width: 16px;
+    height: 16px;
+    background-image: url("../images/path_apple.svg");
+    background-repeat: no-repeat;
+
+}
+
+footer .breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+
+/* 푸터 네비게이션 */
+footer .navigations {
+    margin-bottom: 40px;
+    margin-left: 10px;
+    height: 344px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+footer .navigations .map {
+    margin-top: 24px;
+}
+
+footer .navigations .map:nth-child(6) {
+    padding-bottom: 90px;
+}
+
+footer .navigations .map h3 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+footer .navigations .map li {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+footer .navigations .map li a {
+    color: darkgray;
+}
+
+footer .navigations .map li a:hover {
+    text-decoration: underline;
+}
+
+/* 저작권 카피라이터 */
+
+footer .how-to-shop {
+    font-size: 12px;
+    line-height: 1.4;
+    color: darkgray;
+}
+footer .how-to-shop a {
+    color: burlywood
+}
+footer .how-to-shop a:hover {
+    text-decoration: underline;
+    color: #81b9f1;
+}
+
+footer .legal {
+    margin-top: 10px;
+    padding: 10px 0 40px;
+    border-top: 1px solid;
+    display: flex;
+    gap: 50px;
+    font-size: 12px;
+    color: darkgoldenrod;
+    position: relative;
+}
+footer .legal ul {
+    display: flex;
+    gap: 50px;
+
+}
+
+footer .legal ul li {
+
+}
+
+footer .legal ul li:hover a {
+    text-decoration: underline;
+}
+
+
+footer .legal .locate{
+    right: 25px;
+    position: absolute;
+}
